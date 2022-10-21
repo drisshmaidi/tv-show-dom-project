@@ -9,6 +9,27 @@
   </head>
 
   <body>
+    <div class="container">
+      <select
+        name="episode-dropdown"
+        id="episode-dropdown"
+        area-selected="true"
+      >
+        <option id="episode-options" value="episodes">Select an Episode</option>
+      </select>
+      <input
+        type="text"
+        name="search-bar"
+        id="search-bar"
+        placeholder="Search"
+      />
+
+      <button type="button" class="btn btn-primary" id="button">
+        Return to All Shows
+      </button>
+      <p class="display-episodes"></p>
+    </div>
+
     <div id="root"></div>
 
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
