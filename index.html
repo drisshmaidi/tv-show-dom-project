@@ -6,6 +6,7 @@
     <title>TV Show Project | Driss Hmaidi (drisshmaidi)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+    
   </head>
 
   <body>
@@ -15,20 +16,23 @@
         id="episode-dropdown"
         area-selected="true"
       >
-        <option id="episode-options" value="episodes">Select an Episode</option>
+        <option id="episode-options" value="episodes" disabled selected hidden>
+          Select an Episode
+        </option>
       </select>
       <input
-        type="text"
+        type="search"
         name="search-bar"
         id="search-bar"
         placeholder="Search"
       />
 
-      <button type="button" class="btn btn-primary" id="button">
-        Return to All Shows
-      </button>
-      <p class="display-episodes"></p>
+      <button id="reset-button">Reset</button>
+     
+     <p class="display-episodes"></p>
     </div>
+
+    
 
     <div id="root"></div>
 

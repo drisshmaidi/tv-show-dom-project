@@ -5,30 +5,18 @@ const searchBar = document.getElementById("search-bar");
 
 const episodeDropDown = document.getElementById("episode-dropdown");
 
-const homeButton = document.getElementById("button");
-
+const resetButton = document.getElementById("reset-button");
 
 //Start of Api
-let allEpisodes   
+let allEpisodes;
 
-fetch ('https://api.tvmaze.com/shows/82/episodes')
-.then(response =>response.json())
-.then(data => {
-allEpisodes = data
-makePageForEpisodes(allEpisodes)
-})
+fetch("https://api.tvmaze.com/shows/82/episodes")
+  .then((response) => response.json())
+  .then((data) => {
+    allEpisodes = data;
+    makePageForEpisodes(allEpisodes);
+  });
 //End of Api
-
-// Return to all shows button event
-
-homeButton.addEventListener("click", () => {
-  displayShows(allShows);
-  select.style.display = "none";
-  homeButton.style.display = "none";
-  searchBar.style.display = "none";
-  showSearchBar.style.display = "block";
-});
-
 
 function makePageForEpisodes(episodeList) {
   episodeList.forEach((episode) => {
@@ -59,6 +47,13 @@ function makePageForEpisodes(episodeList) {
   });
 }
 
+//Button Reset
+resetButton.addEventListener("click", () => {
+  episodeDropDown.selectedIndex = 0;
+  rootElem.innerHTML = "";
+  makePageForEpisodes(allEpisodes);
+});
+
 const episodeCode = (season, number) => {
   season = season < 10 ? "0" + season : season;
   number = number < 10 ? "0" + number : number;
@@ -80,6 +75,7 @@ searchBar.addEventListener("keyup", (event) => {
   ).innerText = `Displaying ${episodeFilter.length}/${allEpisodes.length}`;
 });
 
+// Episode Dropdown
 episodeDropDown.addEventListener("change", () => {
   let episodeChoice = episodeDropDown.value;
   episodeChoice = episodeChoice.substring(8);
@@ -87,15 +83,13 @@ episodeDropDown.addEventListener("change", () => {
   allEpisodes.forEach((episode) => {
     console.log(episodeChoice);
     if (episodeChoice.includes(episode.name)) {
-            newArray.push(episode);
-     console.log(newArray);
-     if (!episodeChoice){
-      console.log('');
-      
-     }
-    
+      newArray.push(episode);
+      console.log(newArray);
+      if (!episodeChoice) {
+        console.log("");
+      }
     }
   });
-   rootElem.innerHTML = "";
-   makePageForEpisodes(newArray);
+  rootElem.innerHTML = "";
+  makePageForEpisodes(newArray);
 });
