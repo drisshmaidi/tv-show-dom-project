@@ -10,7 +10,19 @@
   </head>
 
   <body>
+    <section class="nav">
     <div class="container">
+
+      <select
+        name="show-dropdown"
+        id="show-dropdown"
+        area-selected="true"
+      >
+        <option id="show-options" value="shows" disabled selected hidden>
+          Select a Show
+        </option>
+      </select>
+
       <select
         name="episode-dropdown"
         id="episode-dropdown"
@@ -26,8 +38,10 @@
         id="search-bar"
         placeholder="Search"
       />
+     
+      <button id="reset-button">Return to Shows</button>
 
-      <button id="reset-button">Reset</button>
+      </section>
      
      <p class="display-episodes"></p>
     </div>
@@ -41,5 +55,6 @@
 
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
+    <script src="shows.js"></script>
   </body>
 </html>

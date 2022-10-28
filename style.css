@@ -21,13 +21,15 @@ body {
   border-radius: 10px;
 }
 
-.episode-summary {
+.episode-summary,
+.show-summary {
   width: 85%;
   margin: auto;
   text-align: left;
 }
 
-.episode-name {
+.episode-name,
+.show-name {
   border: 2px black solid;
   border-radius: 5px;
   padding: 0.5rem 0;
@@ -36,7 +38,23 @@ body {
   color: black;
 }
 
-.episode-image {
+.episode-image,
+.show-image {
   margin: auto;
   border-radius: 5px;
+}
+
+#episode-dropdown {
+  display: none;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+}
+
+#show-dropdown,
+#episode-dropdown {
+  width: 10rem;
 }
