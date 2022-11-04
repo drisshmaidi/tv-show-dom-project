@@ -6,8 +6,9 @@
     <title>TV Show Project | Driss Hmaidi (drisshmaidi)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-    
-  </head>
+    </head>
+
+
 
   <body>
     <section class="nav">
@@ -39,22 +40,31 @@
         id="search-bar"
         placeholder="Search"
       />
+
+      <input
+        type="search"
+        name="search-bar"
+        id="searchEpisode"
+        placeholder="Search"
+      />
      
       <button id="reset-button">Return to Shows</button>
-
+       <p class="display-episodes"></p>
+      </div>
+      
       </section>
      
-     <p class="display-episodes"></p>
-    </div>
+    
+    
 
     
 
     <div id="root"></div>
 
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+ 
     <script src="episodes.js"></script>
 
-    <!-- Loads YOUR javascript code -->
+ 
     <script src="script.js"></script>
     <script src="shows.js"></script>
   </body>
