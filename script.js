@@ -1,4 +1,3 @@
-//You can edit ALL of the code here
 const rootElem = document.getElementById("root");
 
 const searchBar = document.getElementById("search-bar");
@@ -8,6 +7,8 @@ const episodeDropDown = document.getElementById("episode-dropdown");
 const showDropDown = document.getElementById("show-dropdown");
 
 const resetButton = document.getElementById("reset-button");
+
+const searchEpisode = document.getElementById("searchEpisode");
 
 //Start of Api for Episodes
 let allEpisodes;
@@ -24,6 +25,8 @@ function loadEpisodes(id) {
 // API for All shows
 let allShows;
 function setup() {
+  resetButton.style.display = 'none'
+  searchEpisode.style.display = "none";
   fetch("https://api.tvmaze.com/shows")
     .then((response) => response.json())
     .then((data) => {
@@ -65,6 +68,7 @@ function makePageForEpisodes(episodeList) {
       episode.number
     )} - ${episode.name}`;
     episodeDropDown.appendChild(episodeOption);
+    resetButton.style.display = 'inline'
   });
 }
 
@@ -93,14 +97,49 @@ searchBar.addEventListener("keyup", (event) => {
     );
   });
 
-  //Search Bar for Shows
-
   rootElem.innerHTML = "";
   makePageForEpisodes(episodeFilter);
   document.querySelector(
     ".display-episodes"
   ).innerText = `Displaying ${episodeFilter.length}/${allEpisodes.length}`;
 });
+
+//Search Bar for Shows
+searchBar.addEventListener("keyup", (event) => {
+  const searchInput = event.target.value.toLowerCase();
+  const showFilter = allShows.filter((show) => {
+    return (
+      show.name.toLowerCase().includes(searchInput) ||
+      show.summary.toLowerCase().includes(searchInput)
+    );
+  });
+
+  rootElem.innerHTML = "";
+  makePageForShows(showFilter);
+  document.querySelector(
+    ".display-shows"
+  ).innerText = `Displaying ${showFilter.length}/${allShows.length}`;
+});
+
+//Search Bar for Episodes
+searchEpisode.addEventListener("keyup", (event) => {
+  const searchInput = event.target.value.toLowerCase();
+  //resetButton.style.display = "inline"
+  const showFilter = allEpisodes.filter((show) => {
+    return (
+      show.name.toLowerCase().includes(searchInput) ||
+      show.summary.toLowerCase().includes(searchInput)
+    );
+  });
+
+  rootElem.innerHTML = "";
+  makePageForShows(showFilter);
+  document.querySelector(
+    ".display-shows"
+  ).innerText = `Displaying ${showFilter.length}/${allShows.length}`;
+});
+
+
 
 // Episode Dropdown
 episodeDropDown.addEventListener("change", () => {
@@ -121,11 +160,12 @@ episodeDropDown.addEventListener("change", () => {
   makePageForEpisodes(newArray);
 });
 
-// show Dropdown
+// Show Dropdown
 showDropDown.addEventListener("change", () => {
   let showChoice = showDropDown.value;
+  searchEpisode.style.display = "flex";
+  searchBar.style.display = "none";
   console.log(showChoice);
-  // showChoice = showChoice.substring(8);
   let newArray = [];
   allShows.forEach((show) => {
     console.log(showChoice);
@@ -140,7 +180,6 @@ showDropDown.addEventListener("change", () => {
   let showId = newArray[0].id;
   console.log(newArray[0].id);
   rootElem.innerHTML = "";
-  // makePageForShows(newArray);
   loadEpisodes(showId);
   episodeDropDown.style.display = "inline";
   showDropDown.style.display = "none";
@@ -156,6 +195,7 @@ function makePageForShows(showsList) {
     showName.className = "show-name";
     showName.innerHTML = show.name;
     wrapper.appendChild(showName);
+    showName.addEventListener('click', showFunction) 
     const showImage = document.createElement("img");
     showImage.className = "show-image";
     showImage.src = show.image.medium;
@@ -167,7 +207,36 @@ function makePageForShows(showsList) {
     const showOption = document.createElement("option");
     showOption.innerHTML = show.name;
     showDropDown.appendChild(showOption);
+    
+
   });
 }
+
+// Click Show Name to go to Episodes
+const showFunction = (event) => {
+let showChoice = (event.target.innerHTML);
+searchBar.style.display = "none";
+searchEpisode.style.display = "flex"
+  let newArray = [];
+  allShows.forEach((show) => {
+    console.log(showChoice);
+    if (showChoice.includes(show.name)) {
+      newArray.push(show);
+      console.log(newArray);
+      if (!showChoice) {
+        console.log("");
+      }
+    }
+  });
+  let showId = newArray[0].id;
+  console.log(newArray[0].id);
+  rootElem.innerHTML = "";
+  loadEpisodes(showId);
+  episodeDropDown.style.display = "inline";
+  showDropDown.style.display = "none";
+  
+}
+
+
 
 window.onload = setup;
