@@ -25,7 +25,7 @@ function loadEpisodes(id) {
 // API for All shows
 let allShows;
 function setup() {
-  resetButton.style.display = 'none'
+  resetButton.style.display = "none";
   searchEpisode.style.display = "none";
   fetch("https://api.tvmaze.com/shows")
     .then((response) => response.json())
@@ -68,7 +68,7 @@ function makePageForEpisodes(episodeList) {
       episode.number
     )} - ${episode.name}`;
     episodeDropDown.appendChild(episodeOption);
-    resetButton.style.display = 'inline'
+    resetButton.style.display = "inline";
   });
 }
 
@@ -139,8 +139,6 @@ searchEpisode.addEventListener("keyup", (event) => {
   ).innerText = `Displaying ${showFilter.length}/${allShows.length}`;
 });
 
-
-
 // Episode Dropdown
 episodeDropDown.addEventListener("change", () => {
   let episodeChoice = episodeDropDown.value;
@@ -195,7 +193,7 @@ function makePageForShows(showsList) {
     showName.className = "show-name";
     showName.innerHTML = show.name;
     wrapper.appendChild(showName);
-    showName.addEventListener('click', showFunction) 
+    showName.addEventListener("click", showFunction);
     const showImage = document.createElement("img");
     showImage.className = "show-image";
     showImage.src = show.image.medium;
@@ -207,16 +205,14 @@ function makePageForShows(showsList) {
     const showOption = document.createElement("option");
     showOption.innerHTML = show.name;
     showDropDown.appendChild(showOption);
-    
-
   });
 }
 
 // Click Show Name to go to Episodes
 const showFunction = (event) => {
-let showChoice = (event.target.innerHTML);
-searchBar.style.display = "none";
-searchEpisode.style.display = "flex"
+  let showChoice = event.target.innerHTML;
+  searchBar.style.display = "none";
+  searchEpisode.style.display = "flex";
   let newArray = [];
   allShows.forEach((show) => {
     console.log(showChoice);
@@ -234,9 +230,6 @@ searchEpisode.style.display = "flex"
   loadEpisodes(showId);
   episodeDropDown.style.display = "inline";
   showDropDown.style.display = "none";
-  
-}
-
-
+};
 
 window.onload = setup;
