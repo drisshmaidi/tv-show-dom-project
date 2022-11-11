@@ -4,8 +4,6 @@ body {
   box-sizing: border-box;
 }
 
-
-
 #root {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 20rem));
@@ -43,9 +41,12 @@ body {
   color: black;
 }
 
+.show-name:hover {
+  text-decoration: 2px underline royalblue;
+}
+
 .searchEpisode {
   display: flex;
-  
 }
 
 .episode-image,
@@ -66,25 +67,17 @@ body {
 
 .container {
   display: flex;
-  justify-content:space-between;
+  justify-content: space-between;
   margin: 15px;
   background-color: white;
   margin-left: 121px;
-  
-  
 
   position: fixed;
   top: 0;
   width: 100%;
-
-  
-  
 }
 
 #show-dropdown,
 #episode-dropdown {
   width: 18rem;
-  
 }
-
-

@@ -194,6 +194,7 @@ function makePageForShows(showsList) {
     showName.innerHTML = show.name;
     wrapper.appendChild(showName);
     showName.addEventListener("click", showFunction);
+   
     const showImage = document.createElement("img");
     showImage.className = "show-image";
     showImage.src = show.image.medium;
@@ -231,5 +232,10 @@ const showFunction = (event) => {
   episodeDropDown.style.display = "inline";
   showDropDown.style.display = "none";
 };
+
+
+
+
+
 
 window.onload = setup;
