@@ -3,19 +3,69 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | Driss Hmaidi (drisshmaidi)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  </head>
+    </head>
+
+
 
   <body>
-    <div id="root">
-    </div>
+    <section class="nav">
+    <div class="container">
 
-    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+      <select
+        name="show-dropdown"
+        id="show-dropdown"
+        area-selected="true"
+      >
+        <option id="show-options" value="shows" disabled selected hidden>
+          
+          Select a Show
+        </option>
+      </select>
+
+      <select
+        name="episode-dropdown"
+        id="episode-dropdown"
+        area-selected="true"
+      >
+        <option id="episode-options" value="episodes" disabled selected hidden>
+          Select an Episode
+        </option>
+      </select>
+      <input
+        type="search"
+        name="search-bar"
+        id="search-bar"
+        placeholder="Search"
+      />
+
+      <input
+        type="search"
+        name="search-bar"
+        id="searchEpisode"
+        placeholder="Search"
+      />
+     
+      <button id="reset-button">Return to Shows</button>
+       <p class="display-episodes"></p>
+      </div>
+      
+      </section>
+     
+    
+    
+
+    
+
+    <div id="root"></div>
+
+ 
     <script src="episodes.js"></script>
 
-    <!-- Loads YOUR javascript code -->
+ 
     <script src="script.js"></script>
+    <script src="shows.js"></script>
   </body>
 </html>
